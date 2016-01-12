@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="/static/index_style.css">
+    </head>
+
+    <body>
+        <div class="wrapper">
+            <br><br>
+            <h1>Popis vijesti</h1>
+            <br><br><br>
+
+            <div class="news_list">
+                %for new in news:
+                <div class="news">
+                    <div class="image">
+                        <img class="image" alt="image" src={{new['image']}} />
+                    </div>
+                    <div class="text">
+                        <h3>{{new['title']}}</h3>
+                        <p>{{new['text']}}</p>
+                        <h5>{{new['author']}}</h5>
+                    </div>
+                    
+                    <div class="coments">
+                        <h4>Komentari</h4>
+                        %for comment in new['comments']:
+                        <div>
+                            <p class="comment">{{comment}}</p>
+                        </div>
+                        %end
+                    </div>
+                    
+                    
+                    <div class="insert_comment">
+                        <h4>Unesite komentar</h4>
+                        <form method="post" class="form" action="/comment" method='post'>
+                            <input id="insert_comment" type="text" name="comment">
+                            <input id="id" type="hidden" name="id" value={{new['id']}}>
+                            <input type="submit" value='Spremi'/>
+                        </form>
+                    </div>
+                </div>
+                <br>
+                %end
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,58 @@
+var map = function() {
+    	var news = this
+	
+	if(news.text){
+		var words = news.text.split(" ");
+		
+		words.forEach( function(x) {
+			emit(news.author, {word: x, count: 1});
+		});
+	}
+};
+
+var reduce = function(key, values) {
+
+	var rv = {}
+
+    values.forEach( function(value) {
+		if (rv[value.word] > 0){
+			rv[value.word] += value.count;
+		}else{
+        	rv[value.word] = value.count;
+		}
+    });
+
+	var tuples = [];
+
+	for (var key in rv) tuples.push([key, rv[key]]);
+
+	tuples.sort(function(a, b) {
+		a = a[1];
+    	b = b[1];
+
+    	return a > b ? -1 : (a < b ? 1 : 0);
+	});
+
+	var newRv = {}
+
+	for (var i = 0; i < tuples.length; i++) {
+    	var key = tuples[i][0];
+    	var value = tuples[i][1];
+
+    	newRv[key] = value;
+
+		if(i == 9){
+			break;
+		}
+	}
+
+    return newRv;
+};
+
+db.news.mapReduce(
+    map,
+    reduce,
+    { 
+	out: "author_words" 
+	}
+)

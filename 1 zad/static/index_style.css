@@ -1,0 +1,39 @@
+div.news_list {
+    margin: auto;
+    width: 60%;
+    font-family: verdana;
+}
+
+div.image {
+
+}
+
+img.image {
+    float: left;
+    height: 0%;
+    width: 300px;
+    padding-right: 15px;
+    padding-bottom: 5px;
+}
+
+div.text {
+    width: 65%
+    float: right;
+}
+
+div.insert_comment {
+    width: 100%;
+}
+
+input#insert_comment {
+    width: 80%;
+}
+
+p.comment {
+    font-size: 12px;
+}
+
+h1 {
+    margin: auto;
+    width: 60%;
+}

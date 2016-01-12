@@ -1,0 +1,26 @@
+var map = function() {
+    var news = this
+
+    if (news.comments !== undefined)
+        news.comments.forEach( function(x) {
+		emit(news.title, {count: 1});
+        });
+};
+
+var reduce = function(key, values) {
+    var rv = {
+        count:0
+    };
+
+    values.forEach( function(value) {
+        rv.count += value.count;
+    });
+
+    return rv;
+};
+
+db.news.mapReduce(
+    map,
+    reduce,
+    { out: "top_news" }
+)
