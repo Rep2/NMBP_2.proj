@@ -7,6 +7,10 @@ Naredba stvara kolekciju newsTemp u web bazi
 Naredbom:
 db.newsTemp.find().sort({date: -1}).limit(10).forEach(function(x){db.news.insert(x)})
 
+Naredba stvara index nad date poljem:
+
+db.news.createIndex({date: 1})
+
 stvaramo kolekciju news u kojoj se nalaze ispravno poredanih 10 vijesti
 
 Iz terminala pokrenuti index.py
