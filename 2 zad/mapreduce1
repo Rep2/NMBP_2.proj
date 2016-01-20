@@ -1,4 +1,4 @@
-var map = function() {
+var map1 = function() {
     var news = this
 
     if (news.comments !== undefined)
@@ -7,7 +7,7 @@ var map = function() {
         });
 };
 
-var reduce = function(key, values) {
+var reduce1 = function(key, values) {
     var rv = {
         count:0
     };
@@ -19,8 +19,16 @@ var reduce = function(key, values) {
     return rv;
 };
 
-db.news.mapReduce(
-    map,
-    reduce,
+res = db.news.mapReduce(
+    map1,
+    reduce1,
     { out: "top_news" }
-)
+);
+
+res.results.sort(function (a, b) { 
+	if (a.value.count == b.valuecount) { 
+		return 0; 
+	} 
+	
+	return a.value.count < b.value.count ? 1 : -1 
+});
