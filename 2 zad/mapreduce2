@@ -1,4 +1,4 @@
-var map = function() {
+var map2 = function() {
     	var news = this
 	
 	if(news.text){
@@ -10,7 +10,7 @@ var map = function() {
 	}
 };
 
-var reduce = function(key, values) {
+var reduce2 = function(key, values) {
 
 	var rv = {}
 
@@ -50,8 +50,8 @@ var reduce = function(key, values) {
 };
 
 db.news.mapReduce(
-    map,
-    reduce,
+    map2,
+    reduce2,
     { 
 	out: "author_words" 
 	}
